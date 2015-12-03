@@ -1,0 +1,52 @@
+Termin oddania: 27 kwietnia 2015, godzina 19:00
+                (liczy się czas na serwerze SVN)
+
+Naszym celem w tym zadaniu jest pomiar opóźnień w komunikacji przez sieć
+różnymi metodami. Stosujemy następujące definicje opóźnienia:
+a) w przypadku pomiaru pojedynczymi pakietami - liczymy czas od wysłania
+pakietu do otrzymania pakietu z odpowiedzią,
+b) w przypadku protokołów, które mają naturalne pojęcie połączenia - liczymy
+czas potrzebny na nawiązanie połączenia.
+
+Należy:
+
+1. Napisać program ileczekam, który uruchamiany będzie z trzema argumentami,
+określającymi sposób pomiaru, nazwę komputera, do którego opóźnienie będziemy
+mierzyć, i numer portu wykorzystywanego do pomiaru.
+Przykładowe wywołanie programu może wyglądać tak:
+$ ./ileczekam -t students.mimuw.edu.pl 1025
+W odpowiedzi powinniśmy otrzymać na standardowym wyjściu informację o
+zmierzonym opóźnieniu. 
+
+Obsługujemy dwie metody pomiaru:
+ a) czas nawiązania połączenia TCP (-t),
+ b) czas odpowiedzi na pakiet UDP (-u);  wtedy łączymy się w celu pomiaru
+ opóźnienia z serwerem opisanym w punkcie 2. Wypisujemy też na standardowe
+ wyjście błędów nadesłane w pakiecie liczby (p. opis zawartości pakietu
+ poniżej).
+
+2. Napisać program czekamnaudp, który jest serwerem potrzebnym do pomiaru
+opóźnień metodą (b). Uruchamiamy go, podając w linii poleceń numer portu. Po
+uruchomieniu program czeka na pakiet udp, który powinien zawierać jedną liczbę 
+stałoprzecinkową 64-bitową bez znaku, zapisaną w systemie bigendian,
+zawierającą godzinę o której wysłano pakiet, mierzoną jako mikrosekundy od
+północy 1 stycznia 1970. Odsyłany pakiet powinien zawierać dwie takie liczby -
+jako pierwszą tę nadesłaną, a jako drugą godzinę o której została wysłana
+odpowiedź (w tym samym formacie).
+
+3. Stworzoną parę plików z rozwiązaniem należy zaopatrzyć w plik Makefile
+zapewniający automatyczną kompilację.
+
+4. Pliki źródłowe ileczekam.c, czekamnaudp.c oraz Makefile należy umieścić
+na serwerze SVN
+
+https://svn.mimuw.edu.pl/repos/SIK/
+
+w katalogu
+
+grupaN/zadanie1/ab123456
+
+gdzie grupaN oznacza grupę, do której przynależy student, zaś ab123456 to jego
+standardowy login wg schematu: inicjały, nr indeksu, używany na maszynach
+wydziału. Można też umieścić tam inne pliki potrzebne do skompilowania i
+uruchomienia programu, jeśli to jest konieczne.
